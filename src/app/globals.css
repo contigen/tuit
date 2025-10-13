@@ -1,26 +1,68 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --blue: 217 91% 60%;
+    --blue-foreground: 222 47% 11%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 71.4% 4.1%;
+
+    --radius: 0.5rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.blue-gradient {
+  background: linear-gradient(90deg, hsl(var(--blue) / 0.8) 0%, hsl(var(--blue) / 0.4) 100%);
+}
+
+.blue-gradient-subtle {
+  background: linear-gradient(90deg, hsl(222 47% 20%) 0%, hsl(222 47% 11%) 100%);
+}
+
+.card-hover {
+  transition-property: all;
+  transition-duration: 300ms;
+}
+
+.card-hover:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
 }
