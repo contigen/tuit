@@ -221,10 +221,11 @@ export async function indexVideoData(videoData: VideoDocument) {
       },
     })
   } catch (error) {
-    console.error('❌ Elasticsearch index error:', error)
+    console.error(' Elasticsearch index error:', error)
     if (error && typeof error === 'object' && 'meta' in error) {
       console.error(
         'Error meta:',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         JSON.stringify((error as any).meta?.body?.error, null, 2)
       )
     }
@@ -253,7 +254,9 @@ export async function bulkIndexVideos(videos: VideoDocument[]) {
 
     if (result.errors) {
       const erroredDocuments = result.items
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ?.filter((item: any) => item.index?.error)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((item: any) => ({
           id: item.index?._id,
           error: item.index?.error,
@@ -273,8 +276,9 @@ export async function bulkIndexVideos(videos: VideoDocument[]) {
 
     return result
   } catch (error) {
-    console.error('❌ Elasticsearch bulk index error:', error)
+    console.error(' Elasticsearch bulk index error:', error)
     if (error && typeof error === 'object' && 'meta' in error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       console.error('Error meta:', JSON.stringify((error as any).meta, null, 2))
     }
     throw error
